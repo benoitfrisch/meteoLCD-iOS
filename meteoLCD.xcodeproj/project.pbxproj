@@ -14,6 +14,7 @@
 		057C3F4F1F7FFC040082FA6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057C3F4E1F7FFC040082FA6B /* Assets.xcassets */; };
 		057C3F521F7FFC040082FA6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057C3F501F7FFC040082FA6B /* LaunchScreen.storyboard */; };
 		057C3F5D1F7FFC040082FA6B /* meteoLCDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F5C1F7FFC040082FA6B /* meteoLCDTests.swift */; };
+		0CDAFA81C4D451CE424B7ED0 /* Pods_meteoLCD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB717699157DF103C64528FE /* Pods_meteoLCD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,10 @@
 		057C3F581F7FFC040082FA6B /* meteoLCDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = meteoLCDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		057C3F5C1F7FFC040082FA6B /* meteoLCDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meteoLCDTests.swift; sourceTree = "<group>"; };
 		057C3F5E1F7FFC040082FA6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		057C3F671F7FFCC10082FA6B /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meteoLCD.release.xcconfig"; path = "Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD.release.xcconfig"; sourceTree = "<group>"; };
+		AB717699157DF103C64528FE /* Pods_meteoLCD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_meteoLCD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA4ECA079A1D2B8489D5D2D /* Pods-meteoLCD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meteoLCD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CDAFA81C4D451CE424B7ED0 /* Pods_meteoLCD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,9 +67,12 @@
 		057C3F391F7FFC040082FA6B = {
 			isa = PBXGroup;
 			children = (
+				057C3F671F7FFCC10082FA6B /* Podfile */,
 				057C3F441F7FFC040082FA6B /* meteoLCD */,
 				057C3F5B1F7FFC040082FA6B /* meteoLCDTests */,
 				057C3F431F7FFC040082FA6B /* Products */,
+				623D7AD5695D257C1D51B3A5 /* Pods */,
+				CADD06C6C8B8B197CCBE60BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +108,23 @@
 			path = meteoLCDTests;
 			sourceTree = "<group>";
 		};
+		623D7AD5695D257C1D51B3A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4ECA079A1D2B8489D5D2D /* Pods-meteoLCD.debug.xcconfig */,
+				A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CADD06C6C8B8B197CCBE60BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB717699157DF103C64528FE /* Pods_meteoLCD.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 057C3F611F7FFC040082FA6B /* Build configuration list for PBXNativeTarget "meteoLCD" */;
 			buildPhases = (
+				44222A4A6BC40A927E6AAF5F /* [CP] Check Pods Manifest.lock */,
 				057C3F3E1F7FFC040082FA6B /* Sources */,
 				057C3F3F1F7FFC040082FA6B /* Frameworks */,
 				057C3F401F7FFC040082FA6B /* Resources */,
+				4ACDA95E48907379572501DF /* [CP] Embed Pods Frameworks */,
+				290CA77464CAC1DB84B8B422 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +225,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		290CA77464CAC1DB84B8B422 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44222A4A6BC40A927E6AAF5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4ACDA95E48907379572501DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		057C3F3E1F7FFC040082FA6B /* Sources */ = {
@@ -355,13 +432,14 @@
 		};
 		057C3F621F7FFC040082FA6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDA4ECA079A1D2B8489D5D2D /* Pods-meteoLCD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82T63N97ZX;
 				INFOPLIST_FILE = meteoLCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q.meteoLCD";
+				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -370,13 +448,14 @@
 		};
 		057C3F631F7FFC040082FA6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82T63N97ZX;
 				INFOPLIST_FILE = meteoLCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q.meteoLCD";
+				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
