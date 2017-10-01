@@ -137,16 +137,16 @@ ajourd'hui, 21h30</string>
             </objects>
             <point key="canvasLocation" x="1862" y="-475"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Weather Details Table View Controller-->
         <scene sceneID="QkJ-5T-fT5">
             <objects>
-                <tableViewController id="6nX-yc-BCa" sceneMemberID="viewController">
+                <tableViewController id="6nX-yc-BCa" customClass="WeatherDetailsTableViewController" customModule="meteoLCD" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vxH-7B-51c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherDetailTableViewCell" textLabel="biO-1y-A0I" detailTextLabel="5JO-B1-Wu4" rowHeight="65" style="IBUITableViewCellStyleValue1" id="RCy-lS-Hge" customClass="WeatherDetailTableViewCell" customModule="meteoLCD" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeatherDetailTableViewCell" textLabel="biO-1y-A0I" detailTextLabel="5JO-B1-Wu4" rowHeight="65" style="IBUITableViewCellStyleValue1" id="RCy-lS-Hge" customClass="WeatherDetailTableViewCell" customModule="meteoLCD" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RCy-lS-Hge" id="XFL-Bh-5Uz">
@@ -190,7 +190,7 @@ ajourd'hui, 21h30</string>
         <scene sceneID="mbi-B7-3fj">
             <objects>
                 <navigationController id="2sj-ok-lLF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Details" selectedImage="info" id="oys-eV-UGl"/>
+                    <tabBarItem key="tabBarItem" title="Details" image="info" id="oys-eV-UGl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DG0-GK-BbT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
