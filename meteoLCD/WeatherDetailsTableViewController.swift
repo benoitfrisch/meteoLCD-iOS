@@ -11,15 +11,52 @@ import UIKit
 class WeatherDetailsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        self.parseCurrent()
         self.navigationItem.title = "Weather Details"
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.parseCurrent()
+        
+    }
+    
+    @IBAction func refresh(_ sender: Any) {
+        self.parseCurrent()
+        
+    }
+    
+    func downloadCurrent() {
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("current.json")
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        Alamofire.download(url, to: destination).response { response in
+            self.loadCurrent()
+        }
+    }
+    
+    func loadCurrent() {
+        let file = "current.json"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(file)
+            do {
+                let weatherString = try String(contentsOf: path, encoding: String.Encoding.utf8)
+                if let dataFromString = weatherString.data(using: .utf8, allowLossyConversion: false) {
+                    self.weather = JSON(data: dataFromString)
+                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+                    self.displayCurrentWeather()
+                }
+            } catch {
+            }
+        }
+    }
+    
+    func parseCurrent() {
+        self.downloadCurrent()
+        self.loadCurrent()
     }
 
     override func didReceiveMemoryWarning() {

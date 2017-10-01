@@ -27,27 +27,51 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "Current Weather"
-        self.loadCurrentWeather()
-        
+        self.parseCurrent()
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.loadCurrentWeather()
+        self.parseCurrent()
+        
     }
     
     @IBAction func refresh(_ sender: Any) {
-        self.loadCurrentWeather()
+        self.parseCurrent()
+        
     }
     
-    func loadCurrentWeather() {
-        Alamofire.request(url).responseJSON { response in
-            if let json = response.result.value {
-                self.weather = JSON(json)
-                self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-                self.displayCurrentWeather()
+    func downloadCurrent() {
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("current.json")
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        Alamofire.download(url, to: destination).response { response in
+            self.loadCurrent()
+        }
+    }
+    
+    func loadCurrent() {
+        let file = "current.json"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(file)
+            do {
+                let weatherString = try String(contentsOf: path, encoding: String.Encoding.utf8)
+                if let dataFromString = weatherString.data(using: .utf8, allowLossyConversion: false) {
+                    self.weather = JSON(data: dataFromString)
+                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+                    self.displayCurrentWeather()
+                }
+            } catch {
             }
         }
+    }
+    
+    func parseCurrent() {
+        self.downloadCurrent()
+        self.loadCurrent()
     }
     
     func displayCurrentWeather() {
@@ -55,6 +79,7 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
         currentWeatherImage.image = UIImage(named: currentWeather.icon!)
         currentTemperatureLabel.text = currentWeather.temperature
         currentPressionLabel.text = currentWeather.pression
+        currentWeatherBoxLabel.backgroundColor = currentWeather.backgroundColor
         lastUpdatedLabel.text = "Dernière mise à jour:\n"+currentWeather.timestamp!
     }
 
