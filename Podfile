@@ -8,4 +8,5 @@ target 'meteoLCD' do
     pod 'EFInternetIndicator'
     pod 'Firebase/Core'
     pod 'SwiftyJSON'
+    pod 'Charts'
 end
