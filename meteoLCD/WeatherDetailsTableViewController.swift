@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import EFInternetIndicator
 
-class WeatherDetailsTableViewController: UITableViewController {
-
+class WeatherDetailsTableViewController: UITableViewController, InternetStatusIndicable {
+    private var weather: JSON! = nil
+    private var url: String = "http://www.lcd.lu/meteo/current_json.php"
+    private var currentWeather: CurrentWeatherClass!
+    var internetConnectionIndicator: InternetViewIndicator?
+    
     override func viewDidLoad() {
-        self.parseCurrent()
+        self.startMonitoringInternet()
         self.navigationItem.title = "Weather Details"
+        self.parseCurrent()
+        self.tableView.rowHeight = 60.0
         super.viewDidLoad()
     }
     
@@ -46,8 +55,7 @@ class WeatherDetailsTableViewController: UITableViewController {
                 let weatherString = try String(contentsOf: path, encoding: String.Encoding.utf8)
                 if let dataFromString = weatherString.data(using: .utf8, allowLossyConversion: false) {
                     self.weather = JSON(data: dataFromString)
-                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-                    self.displayCurrentWeather()
+                    self.tableView.reloadData()
                 }
             } catch {
             }
@@ -67,13 +75,11 @@ class WeatherDetailsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return weather["weather"].arrayValue.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
+        return weather["weather"][section].arrayValue.count
     }
 
     
@@ -86,10 +92,10 @@ class WeatherDetailsTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate meal for the data source layout.
-        //let subject = exams[self.section]["subjects"][indexPath.row]
+        let item = weather["weather"][indexPath.section][indexPath.row]
         
-        cell.descriptionLabel.text = "Temp"
-        cell.valueLabel.text = "11"
+        cell.descriptionLabel.text = item["label"].stringValue
+        cell.valueLabel.text = item["value"].stringValue
         
         return cell
     }

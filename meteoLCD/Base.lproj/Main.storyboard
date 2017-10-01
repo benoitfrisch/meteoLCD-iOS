@@ -181,9 +181,9 @@ ajourd'hui, 21h30</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Value" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" id="5JO-B1-Wu4">
-                                            <rect key="frame" x="320" y="23" width="40" height="19.5"/>
+                                            <rect key="frame" x="318" y="22" width="42" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.2901960784" green="0.66666666669999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -200,7 +200,13 @@ ajourd'hui, 21h30</string>
                             <outlet property="delegate" destination="6nX-yc-BCa" id="Rva-Dk-2F1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="I18-aT-adH"/>
+                    <navigationItem key="navigationItem" id="I18-aT-adH">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="1IY-xK-iLq">
+                            <connections>
+                                <action selector="refresh:" destination="6nX-yc-BCa" id="NEj-5i-3cv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1U-vX-wBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
