@@ -25,6 +25,8 @@ import EFInternetIndicator
 class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
     private var url: String = "http://www.lcd.lu/meteo/current_json.php"
+    private let FILE_NAME = "current.json"
+    private var downloader : DownloadHelper! = nil
     private var currentWeather: CurrentWeatherClass!
     var internetConnectionIndicator: InternetViewIndicator?
     
@@ -52,37 +54,11 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
         
     }
     
-    func downloadCurrent() {
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("current.json")
-            
-            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-        }
-        Alamofire.download(url, to: destination).response { response in
-            self.loadCurrent()
-        }
-    }
-    
-    func loadCurrent() {
-        let file = "current.json"
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let path = dir.appendingPathComponent(file)
-            do {
-                let weatherString = try String(contentsOf: path, encoding: String.Encoding.utf8)
-                if let dataFromString = weatherString.data(using: .utf8, allowLossyConversion: false) {
-                    self.weather = JSON(data: dataFromString)
-                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-                    self.displayCurrentWeather()
-                }
-            } catch {
-            }
-        }
-    }
-    
     func parseCurrent() {
-        self.downloadCurrent()
-        self.loadCurrent()
+        self.downloader = DownloadHelper(url: url, file: FILE_NAME)
+        self.weather = self.downloader.download()
+        self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+        self.displayCurrentWeather()
     }
     
     func displayCurrentWeather() {

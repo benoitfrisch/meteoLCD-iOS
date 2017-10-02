@@ -19,7 +19,7 @@
 
 import UIKit
 
-class CurrentWeatherClass {
+class CurrentWeatherClass: NSObject {
     var temperature : String?
     var pression : String?
     var icon : String?

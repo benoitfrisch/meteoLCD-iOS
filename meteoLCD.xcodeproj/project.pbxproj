@@ -16,6 +16,8 @@
 		057C3F6B1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F6A1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift */; };
 		057C3F6D1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */; };
 		057C3F6F1F8131140082FA6B /* CurrentWeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */; };
+		05F53D841F82E6B4004AB531 /* GraphsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */; };
+		05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D851F82E76A004AB531 /* DownloadHelper.swift */; };
 		0CDAFA81C4D451CE424B7ED0 /* Pods_meteoLCD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB717699157DF103C64528FE /* Pods_meteoLCD.framework */; };
 		F4A8E124475C28CA237DA69D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F4A8ED0FB31CC758208E12A8 /* README.md */; };
 		F4A8E75189119CC48AAC454E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F4A8E19781FD5636B2040002 /* LICENSE */; };
@@ -47,6 +49,8 @@
 		057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsTableViewController.swift; sourceTree = "<group>"; };
 		057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherClass.swift; sourceTree = "<group>"; };
 		0590A8ED1F81A9E500A366BF /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphsTableViewController.swift; sourceTree = "<group>"; };
+		05F53D851F82E76A004AB531 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meteoLCD.release.xcconfig"; path = "Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD.release.xcconfig"; sourceTree = "<group>"; };
 		AB717699157DF103C64528FE /* Pods_meteoLCD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_meteoLCD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A8E19781FD5636B2040002 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -100,10 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				057C3F451F7FFC040082FA6B /* AppDelegate.swift */,
-				057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */,
-				057C3F681F80F6380082FA6B /* CurrentWeatherViewController.swift */,
-				057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */,
-				057C3F6A1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift */,
+				05F53D8C1F82EC13004AB531 /* ViewController */,
+				05F53D8B1F82EC09004AB531 /* TableViewController */,
+				05F53D8A1F82EC00004AB531 /* Layout */,
+				05F53D881F82EBEC004AB531 /* Model */,
+				05F53D891F82EBF2004AB531 /* Helper */,
 				057C3F4B1F7FFC040082FA6B /* Main.storyboard */,
 				057C3F4E1F7FFC040082FA6B /* Assets.xcassets */,
 				057C3F501F7FFC040082FA6B /* LaunchScreen.storyboard */,
@@ -119,6 +124,47 @@
 				057C3F5E1F7FFC040082FA6B /* Info.plist */,
 			);
 			path = meteoLCDTests;
+			sourceTree = "<group>";
+		};
+		05F53D881F82EBEC004AB531 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		05F53D891F82EBF2004AB531 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				05F53D851F82E76A004AB531 /* DownloadHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		05F53D8A1F82EC00004AB531 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				057C3F6A1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		05F53D8B1F82EC09004AB531 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */,
+				05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		05F53D8C1F82EC13004AB531 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				057C3F681F80F6380082FA6B /* CurrentWeatherViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		623D7AD5695D257C1D51B3A5 /* Pods */ = {
@@ -298,8 +344,10 @@
 				057C3F461F7FFC040082FA6B /* AppDelegate.swift in Sources */,
 				057C3F691F80F6380082FA6B /* CurrentWeatherViewController.swift in Sources */,
 				057C3F6F1F8131140082FA6B /* CurrentWeatherClass.swift in Sources */,
+				05F53D841F82E6B4004AB531 /* GraphsTableViewController.swift in Sources */,
 				057C3F6D1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift in Sources */,
 				F4A8E124475C28CA237DA69D /* README.md in Sources */,
+				05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
