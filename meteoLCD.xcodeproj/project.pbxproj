@@ -18,6 +18,7 @@
 		057C3F6F1F8131140082FA6B /* CurrentWeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */; };
 		05F53D841F82E6B4004AB531 /* GraphsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */; };
 		05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D851F82E76A004AB531 /* DownloadHelper.swift */; };
+		05F53D8F1F82EEF7004AB531 /* GraphDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */; };
 		0CDAFA81C4D451CE424B7ED0 /* Pods_meteoLCD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB717699157DF103C64528FE /* Pods_meteoLCD.framework */; };
 		F4A8E124475C28CA237DA69D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F4A8ED0FB31CC758208E12A8 /* README.md */; };
 		F4A8E75189119CC48AAC454E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F4A8E19781FD5636B2040002 /* LICENSE */; };
@@ -51,6 +52,7 @@
 		0590A8ED1F81A9E500A366BF /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphsTableViewController.swift; sourceTree = "<group>"; };
 		05F53D851F82E76A004AB531 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
+		05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meteoLCD.release.xcconfig"; path = "Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD.release.xcconfig"; sourceTree = "<group>"; };
 		AB717699157DF103C64528FE /* Pods_meteoLCD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_meteoLCD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A8E19781FD5636B2040002 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				057C3F681F80F6380082FA6B /* CurrentWeatherViewController.swift */,
+				05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				057C3F6B1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift in Sources */,
+				05F53D8F1F82EEF7004AB531 /* GraphDetailViewController.swift in Sources */,
 				057C3F461F7FFC040082FA6B /* AppDelegate.swift in Sources */,
 				057C3F691F80F6380082FA6B /* CurrentWeatherViewController.swift in Sources */,
 				057C3F6F1F8131140082FA6B /* CurrentWeatherClass.swift in Sources */,

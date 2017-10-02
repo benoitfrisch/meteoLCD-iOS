@@ -1,10 +1,21 @@
-//
-//  GraphsTableViewController.swift
-//  meteoLCD
-//
-//  Created by Benoît Frisch on 02/10/2017.
-//  Copyright © 2017 Benoît Frisch. All rights reserved.
-//
+/**
+ * This file is part of meteoLCD.
+ *
+ * Copyright (c) 2017 Benoît FRISCH
+ *
+ * meteoLCD is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * meteoLCD is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with meteoLCD If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import SwiftyJSON
 import Alamofire
@@ -48,11 +59,11 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return weather["weather"].arrayValue.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weather["weather"][section].arrayValue.count
+        return weather.arrayValue.count
     }
     
     
@@ -65,58 +76,21 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         }
         
         // Fetches the appropriate meal for the data source layout.
-        let item = weather["weather"][indexPath.section][indexPath.row]
+        let item = weather[indexPath.row]
         
         cell.descriptionLabel.text = item["label"].stringValue
-        cell.valueLabel.text = item["value"].stringValue
         
         return cell
     }
+
     
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "graph") {
+            let graphVc = segue.destination as! GraphDetailViewController
+            graphVc.label = weather[(tableView.indexPathForSelectedRow?.row)!]["label"].stringValue
+            graphVc.id = weather[(tableView.indexPathForSelectedRow?.row)!]["id"].stringValue
+        }
+    }
     
 }
