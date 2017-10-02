@@ -18,8 +18,8 @@
  */
 
 import UIKit
-import Alamofire
 import SwiftyJSON
+import Alamofire
 import EFInternetIndicator
 
 class WeatherDetailsTableViewController: UITableViewController, InternetStatusIndicable {

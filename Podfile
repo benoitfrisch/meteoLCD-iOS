@@ -1,8 +1,8 @@
-platform :ios, '11.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'meteoLCD' do
-    pod 'Alamofire', '~> 4.4'
+    pod 'Alamofire'
     pod 'AlamofireImage', '~> 3.2'
     pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
     pod 'EFInternetIndicator'

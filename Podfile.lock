@@ -39,7 +39,7 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
+  - Alamofire
   - AlamofireImage (~> 3.2)
   - AlamofireNetworkActivityIndicator (~> 2.2)
   - Charts
@@ -63,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 9c67efb713f73dcbd7b33ce56af73edf8a98a328
+PODFILE CHECKSUM: 316e7b53fd01017aa16bd40409bc5ae075ab6ae7
 
 COCOAPODS: 1.2.1

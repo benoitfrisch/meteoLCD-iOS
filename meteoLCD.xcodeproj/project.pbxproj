@@ -46,6 +46,7 @@
 		057C3F6A1F80FA0A0082FA6B /* WeatherDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailTableViewCell.swift; sourceTree = "<group>"; };
 		057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsTableViewController.swift; sourceTree = "<group>"; };
 		057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherClass.swift; sourceTree = "<group>"; };
+		0590A8ED1F81A9E500A366BF /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88D0CEE9E90B1F157B62461 /* Pods-meteoLCD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meteoLCD.release.xcconfig"; path = "Pods/Target Support Files/Pods-meteoLCD/Pods-meteoLCD.release.xcconfig"; sourceTree = "<group>"; };
 		AB717699157DF103C64528FE /* Pods_meteoLCD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_meteoLCD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A8E19781FD5636B2040002 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		CADD06C6C8B8B197CCBE60BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0590A8ED1F81A9E500A366BF /* SwiftyJSON.framework */,
 				AB717699157DF103C64528FE /* Pods_meteoLCD.framework */,
 			);
 			name = Frameworks;
@@ -453,10 +455,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82T63N97ZX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireNetworkActivityIndicator\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Charts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/EFInternetIndicator\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReachabilitySwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftMessages\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+				);
 				INFOPLIST_FILE = meteoLCD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q";
+				PRODUCT_BUNDLE_IDENTIFIER = 2KB53BGN7Q;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -470,10 +488,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 82T63N97ZX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireNetworkActivityIndicator\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Charts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/EFInternetIndicator\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReachabilitySwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftMessages\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+				);
 				INFOPLIST_FILE = meteoLCD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-KB53BGN7Q";
+				PRODUCT_BUNDLE_IDENTIFIER = 2KB53BGN7Q;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
