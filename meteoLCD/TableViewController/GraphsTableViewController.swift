@@ -27,12 +27,16 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     private let FILE_NAME = "graphs.json"
     private var downloader : DownloadHelper! = nil
     var internetConnectionIndicator: InternetViewIndicator?
+    var refresher : UIRefreshControl!
     
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "Graphs"
         self.parseCurrent()
         self.tableView.rowHeight = 60.0
+        refresher = UIRefreshControl()
+        tableView.addSubview(refresher)
+        refresher.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
         super.viewDidLoad()
     }
     
@@ -46,9 +50,18 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         
     }
     
+    @objc func pullRefresh() {
+        DispatchQueue.main.async {
+            self.parseCurrent()
+            self.refresher.endRefreshing()
+        }
+    }
+    
     func parseCurrent() {
         self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-        self.weather = self.downloader.download()
+        self.downloader.download()
+        self.weather = self.downloader.parse()
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

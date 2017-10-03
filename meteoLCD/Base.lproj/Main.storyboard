@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -295,23 +294,12 @@ ajourd'hui, 21h30</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="leading" secondItem="obf-G5-1GZ" secondAttribute="leading" id="0sW-qk-nkS"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="centerX" secondItem="obf-G5-1GZ" secondAttribute="centerX" id="9S4-7c-9rS"/>
-                            <constraint firstAttribute="bottom" secondItem="qeD-fa-62X" secondAttribute="bottom" constant="49" id="B5j-Wi-8Ew"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="obf-G5-1GZ" secondAttribute="top" constant="64" id="FVF-tT-UbT"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="bottom" secondItem="gkp-Si-DD8" secondAttribute="bottom" id="HAC-sF-XV0"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="leading" secondItem="obf-G5-1GZ" secondAttribute="leading" id="KvK-8w-QAf"/>
-                            <constraint firstAttribute="trailing" secondItem="qeD-fa-62X" secondAttribute="trailing" id="TYu-GE-NU9"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="leading" secondItem="gkp-Si-DD8" secondAttribute="leading" id="UBF-KT-dZZ"/>
-                            <constraint firstAttribute="trailing" secondItem="qeD-fa-62X" secondAttribute="trailing" id="WSk-Mb-Rmb"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="obf-G5-1GZ" secondAttribute="top" constant="64" id="fbK-Ba-SXo"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="gkp-Si-DD8" secondAttribute="top" id="g1b-Wc-G8X"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="trailing" secondItem="gkp-Si-DD8" secondAttribute="trailing" id="hJP-DK-ogJ"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="obf-G5-1GZ" secondAttribute="topMargin" id="hen-ce-OQp"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="gkp-Si-DD8" secondAttribute="top" id="iuj-GH-HZD"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="leading" secondItem="obf-G5-1GZ" secondAttribute="leading" id="oN1-5o-crZ"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="bottom" secondItem="gkp-Si-DD8" secondAttribute="bottom" id="qLf-qh-jbB"/>
-                            <constraint firstItem="qeD-fa-62X" firstAttribute="bottom" secondItem="obf-G5-1GZ" secondAttribute="bottomMargin" id="vnw-uH-UGh"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="bottom" secondItem="gkp-Si-DD8" secondAttribute="bottom" id="6Ca-MT-aWO"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="trailing" secondItem="gkp-Si-DD8" secondAttribute="trailing" id="ROA-hX-QyT"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="centerX" secondItem="gkp-Si-DD8" secondAttribute="centerX" id="akt-TZ-FM8"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="top" secondItem="gkp-Si-DD8" secondAttribute="top" id="lAD-3l-Dg9"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="centerY" secondItem="gkp-Si-DD8" secondAttribute="centerY" id="wom-6Y-lgV"/>
+                            <constraint firstItem="qeD-fa-62X" firstAttribute="leading" secondItem="gkp-Si-DD8" secondAttribute="leading" id="y2v-mb-2aQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gkp-Si-DD8"/>
                     </view>

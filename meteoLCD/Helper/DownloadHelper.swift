@@ -30,7 +30,7 @@ class DownloadHelper: NSObject {
         self.fileName = file
     }
     
-    public func download() -> JSON {
+    public func download() {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent(self.fileName)
@@ -39,9 +39,7 @@ class DownloadHelper: NSObject {
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         Alamofire.download(self.url, to: destination).response { response in
-            self.parse()
         }
-        return self.parse()
     }
     
     func parse() -> JSON {

@@ -36,32 +36,39 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = label
-        self.parseCurrent()
+        
+        self.updateGraph()
+        
+        
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.parseCurrent()
-    }
-    
     func parseCurrent() {
-        DispatchQueue.global(qos: .background).async {
-            self.downloader = DownloadHelper(url: self.url+self.id, file: "graph_" + self.id + ".json")
-            DispatchQueue.main.async(flags: .barrier) {
-                self.graph = self.downloader.download()
-            }
-            DispatchQueue.main.async(flags: .barrier) {
-                self.updateGraph()
-            }
-        }
+        self.downloader = DownloadHelper(url: self.url+self.id, file: "graph_" + self.id + ".json")
+        self.downloader.download()
+        self.graph = self.downloader.parse()
     }
 
     func updateGraph() {
         var dataPoints  = [ChartDataEntry]()
         var dateEntry  = [String]()
         
-        let history = graph["history"].arrayValue
+        while (graph==nil) {
+            self.parseCurrent()
+            if (graph["history"].arrayValue.count>0) {
+                break
+            }
+        }
         
+        while (graph["history"].arrayValue.count==0) {
+            self.parseCurrent()
+            if (graph["history"].arrayValue.count>0) {
+                break
+            }
+        }
+        
+        let history = graph["history"].arrayValue
+
         for i in 0...history.count-2 {
             let value = ChartDataEntry(x: Double(i), y: Double(history[i]["value"].doubleValue))
             let date = history[i]["date"].stringValue

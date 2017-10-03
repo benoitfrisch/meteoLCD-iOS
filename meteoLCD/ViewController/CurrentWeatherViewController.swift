@@ -57,9 +57,9 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     func parseCurrent() {
         DispatchQueue.global(qos: .background).async {
             self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-            DispatchQueue.main.async(flags: .barrier) {
-                self.weather = self.downloader.download()
-            }
+            self.downloader.download()
+            self.weather = self.downloader.parse()
+            
             DispatchQueue.main.async(flags: .barrier) {
                 self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
                 self.displayCurrentWeather()
