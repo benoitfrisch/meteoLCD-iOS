@@ -47,12 +47,8 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     }
     
     func parseCurrent() {
-        DispatchQueue.global(qos: .background).async {
-            self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-            DispatchQueue.main.async(flags: .barrier) {
-                self.weather = self.downloader.download()
-            }
-        }
+        self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
+        self.weather = self.downloader.download()
     }
     
     override func didReceiveMemoryWarning() {
