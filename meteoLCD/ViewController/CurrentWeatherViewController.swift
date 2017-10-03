@@ -46,7 +46,6 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     
     override func viewDidAppear(_ animated: Bool) {
         self.displayCurrentWeather()
-        
     }
     
     @IBAction func refresh(_ sender: Any) {

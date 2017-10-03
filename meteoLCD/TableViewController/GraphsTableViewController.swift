@@ -61,7 +61,6 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
         self.downloader.download()
         self.weather = self.downloader.parse()
-        
         self.tableView.reloadData()
     }
     

@@ -28,6 +28,7 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     private var url: String = "http://www.lcd.lu/meteo/graph_json.php?id="
     public var id: String! = nil
     public var label: String! = nil
+    public var unit: String! = nil
     private var downloader : DownloadHelper! = nil
     var internetConnectionIndicator: InternetViewIndicator?
     
@@ -59,7 +60,6 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
                 break
             }
         }
-        
         while (graph["history"].arrayValue.count==0) {
             self.parseCurrent()
             if (graph["history"].arrayValue.count>0) {
@@ -72,6 +72,7 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         for i in 0...history.count-2 {
             let value = ChartDataEntry(x: Double(i), y: Double(history[i]["value"].doubleValue))
             let date = history[i]["date"].stringValue
+            self.unit = history[i]["unit"].stringValue
             dataPoints.append(value)
             dateEntry.append(date)
         }
@@ -91,9 +92,13 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         let data = LineChartData()
         data.addDataSet(historyLine)
         
+        let valueFormat = ValueFormatter(unit: self.unit)
+        
         graphView.data = data
         graphView.chartDescription?.text = ""
         graphView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dateEntry)
+        graphView.leftAxis.valueFormatter = valueFormat
+        graphView.rightAxis.enabled = false
         graphView.xAxis.labelRotationAngle = CGFloat(270.0)
         graphView.xAxis.labelPosition = XAxis.LabelPosition.bottom;
         graphView.legend.enabled = false
