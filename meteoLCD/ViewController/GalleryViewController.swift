@@ -18,29 +18,75 @@
  */
 
 import UIKit
+import SwiftPhotoGallery
 
-class GalleryViewController: UIViewController {
-
+class GalleryViewController:  UICollectionViewController {
+    
+    let imageNames = ["sun_back", "sun_back", "sun_back"]
+    let imageTitles = ["Image 1", "Image 2", "Image 3"]
+    var index: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.navigationItem.title = "meteoLCD Gallery"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: UICollectionViewDataSource
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-    */
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCollectionViewCell
+        cell.imageView.image = UIImage(named: imageNames[indexPath.item])
+        return cell
+    }
+    
+    
+    // MARK: UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        index = indexPath.item
+        
+        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
+        gallery.backgroundColor = UIColor.black
+        gallery.pageIndicatorTintColor = UIColor.gray.withAlphaComponent(0.5)
+        gallery.currentPageIndicatorTintColor = UIColor(red: 0.0, green: 0.66, blue: 0.875, alpha: 1.0)
+        gallery.hidePageControl = false
+        gallery.modalPresentationStyle = .overFullScreen
+        
+        present(gallery, animated: true, completion: nil)
+    }
+    
+}
 
+
+// MARK: SwiftPhotoGalleryDataSource Methods
+extension GalleryViewController: SwiftPhotoGalleryDataSource {
+    
+    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
+        return imageNames.count
+    }
+    
+    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
+        return UIImage(named: imageNames[forIndex])
+    }
+}
+
+
+// MARK: SwiftPhotoGalleryDelegate Methods
+extension GalleryViewController: SwiftPhotoGalleryDelegate {
+    
+    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
+        self.index = gallery.currentPage
+        dismiss(animated: true, completion: nil)
+    }
 }
