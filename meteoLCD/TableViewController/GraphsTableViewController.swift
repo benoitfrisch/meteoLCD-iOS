@@ -31,7 +31,7 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     
     override func viewDidLoad() {
         self.startMonitoringInternet()
-        self.navigationItem.title = "Graphs"
+        self.navigationItem.title = "Graphs (7 days)"
         self.parseCurrent()
         self.tableView.rowHeight = 60.0
         refresher = UIRefreshControl()
