@@ -44,12 +44,11 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
     
     override func viewDidAppear(_ animated: Bool) {
         self.parseCurrent()
-        
+        self.tableView.reloadData()
     }
     
     @IBAction func refresh(_ sender: Any) {
         self.parseCurrent()
-        
     }
     
     @objc func pullRefresh() {

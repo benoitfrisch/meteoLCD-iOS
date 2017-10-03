@@ -40,34 +40,45 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "Current Weather"
-        self.parseCurrent()
+        self.displayCurrentWeather()
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.parseCurrent()
+        self.displayCurrentWeather()
         
     }
     
     @IBAction func refresh(_ sender: Any) {
-        self.parseCurrent()
+        self.displayCurrentWeather()
         
     }
     
     func parseCurrent() {
-        DispatchQueue.global(qos: .background).async {
-            self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-            self.downloader.download()
-            self.weather = self.downloader.parse()
-            
-            DispatchQueue.main.async(flags: .barrier) {
-                self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-                self.displayCurrentWeather()
-            }
-        }
+        self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
+        self.downloader.download()
+        self.weather = self.downloader.parse()
     }
     
     func displayCurrentWeather() {
+        while (weather==nil) {
+            self.parseCurrent()
+            if (self.weather["weather"].arrayValue.count>0) {
+                break
+            }
+        }
+        
+        while (self.weather["weather"].arrayValue.count==0) {
+            self.parseCurrent()
+            if (self.weather["weather"].arrayValue.count>0) {
+                break
+            }
+        }
+        
+        self.parseCurrent()
+        
+        self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+        
         backgroundImage.image = UIImage(named: currentWeather.icon!+"_back")
         currentWeatherImage.image = UIImage(named: currentWeather.icon!)
         currentTemperatureLabel.text = currentWeather.temperature

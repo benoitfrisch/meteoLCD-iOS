@@ -37,17 +37,17 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         refresher = UIRefreshControl()
         tableView.addSubview(refresher)
         refresher.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
+        self.tableView.reloadData()
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.parseCurrent()
-        
+        self.tableView.reloadData()
     }
     
     @IBAction func refresh(_ sender: Any) {
         self.parseCurrent()
-        
     }
     
     @objc func pullRefresh() {
@@ -61,6 +61,7 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
         self.downloader.download()
         self.weather = self.downloader.parse()
+        
         self.tableView.reloadData()
     }
     
