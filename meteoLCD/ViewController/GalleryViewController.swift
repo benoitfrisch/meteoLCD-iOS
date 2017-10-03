@@ -21,9 +21,6 @@ import UIKit
 import SwiftPhotoGallery
 
 class GalleryViewController:  UICollectionViewController {
-    
-    let imageNames = ["sun_back", "sun_back", "sun_back"]
-    let imageTitles = ["Image 1", "Image 2", "Image 3"]
     var index: Int = 0
     
     override func viewDidLoad() {
@@ -39,12 +36,12 @@ class GalleryViewController:  UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 45
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCollectionViewCell
-        cell.imageView.image = UIImage(named: imageNames[indexPath.item])
+        cell.imageView.image = UIImage(named: String(format: "%03d", indexPath.item+1))
         return cell
     }
     
@@ -73,11 +70,11 @@ class GalleryViewController:  UICollectionViewController {
 extension GalleryViewController: SwiftPhotoGalleryDataSource {
     
     func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
-        return imageNames.count
+        return 45
     }
     
     func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
-        return UIImage(named: imageNames[forIndex])
+        return UIImage(named: String(format: "%03d", forIndex+1))
     }
 }
 
