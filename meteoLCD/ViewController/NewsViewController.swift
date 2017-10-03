@@ -23,18 +23,23 @@ class NewsViewController: UIViewController, InternetStatusIndicable {
     var internetConnectionIndicator: InternetViewIndicator?
     
     @IBOutlet var webView: UIWebView!
-    @IBOutlet var spinner: UIActivityIndicatorView!
+    //@IBOutlet var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "News"
         webView.loadRequest(NSURLRequest(url: NSURL(string: "https://lcd.fresh.lu/getnews.php")! as URL) as URLRequest)
-        spinner.isHidden = false
+        //spinner.startAnimating()
         super.viewDidLoad()
     }
-    func webViewDidFinishLoad(webView: UIWebView!) {
-        spinner.isHidden = true
+    /*
+    func webViewDidStartLoad(_ webView: UIWebView) {
+         spinner.startAnimating()
     }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        spinner.stopAnimating()
+    }*/
         
 
     override func didReceiveMemoryWarning() {
