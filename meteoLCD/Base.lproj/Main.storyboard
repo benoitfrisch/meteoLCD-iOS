@@ -362,7 +362,7 @@ ajourd'hui, 21h30</string>
                             <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="Cell" id="8gT-zE-3Ow" customClass="MainCollectionViewCell" customModule="SwiftPhotoGallery_Example" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="8gT-zE-3Ow" customClass="MainCollectionViewCell" customModule="SwiftPhotoGallery_Example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -370,7 +370,7 @@ ajourd'hui, 21h30</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="z3E-IQ-o1u">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                         </imageView>
                                     </subviews>
                                 </view>
@@ -454,7 +454,7 @@ ajourd'hui, 21h30</string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="YlD-Lo-CT3"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="spinner" destination="8Xk-N6-gaO" id="D1l-KR-v2P"/>
+                        <outlet property="spinner" destination="8Xk-N6-gaO" id="NP3-rM-Xiz"/>
                         <outlet property="webView" destination="BtX-Qk-q6C" id="P24-pq-jio"/>
                     </connections>
                 </viewController>

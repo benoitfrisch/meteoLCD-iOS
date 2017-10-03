@@ -20,16 +20,22 @@ import UIKit
 import EFInternetIndicator
 
 class NewsViewController: UIViewController, InternetStatusIndicable {
-    @IBOutlet var webView: UIWebView!
     var internetConnectionIndicator: InternetViewIndicator?
+    
+    @IBOutlet var webView: UIWebView!
+    @IBOutlet var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "News"
         webView.loadRequest(NSURLRequest(url: NSURL(string: "https://lcd.fresh.lu/getnews.php")! as URL) as URLRequest)
-        
+        spinner.isHidden = false
         super.viewDidLoad()
     }
+    func webViewDidFinishLoad(webView: UIWebView!) {
+        spinner.isHidden = true
+    }
+        
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
