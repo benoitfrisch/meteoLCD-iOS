@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "view_of_meteoLCD.JPG"
+      "filename" : "view_of_meteoLCD.JPG",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
