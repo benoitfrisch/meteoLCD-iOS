@@ -47,9 +47,12 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
         self.parseCurrent()
         
     }
+    
     func parseCurrent() {
         self.downloader = DownloadHelper(url: url, file: FILE_NAME)
         self.weather = self.downloader.download()
+        self.weather = self.downloader.parse()
+        self.weather = self.downloader.parse()
     }
 
     override func didReceiveMemoryWarning() {

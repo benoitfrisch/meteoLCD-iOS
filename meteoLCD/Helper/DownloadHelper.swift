@@ -39,6 +39,7 @@ class DownloadHelper: NSObject {
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         Alamofire.download(self.url, to: destination).response { response in
+            self.parse()
         }
         return self.parse()
     }

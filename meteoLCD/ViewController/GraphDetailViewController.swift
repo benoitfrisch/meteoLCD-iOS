@@ -45,11 +45,15 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     }
     
     func parseCurrent() {
-        self.downloader = DownloadHelper(url: url+id, file: "graph_" + id + ".json")
-        print(url+id)
-        self.graph = self.downloader.download()
-        print(self.graph)
-        self.updateGraph()
+        DispatchQueue.global(qos: .background).async {
+            self.downloader = DownloadHelper(url: self.url+self.id, file: "graph_" + self.id + ".json")
+            DispatchQueue.main.async(flags: .barrier) {
+                self.graph = self.downloader.download()
+            }
+            DispatchQueue.main.async(flags: .barrier) {
+                self.updateGraph()
+            }
+        }
     }
 
     func updateGraph() {
@@ -57,13 +61,14 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         var dateEntry  = [String]()
         
         let history = graph["history"].arrayValue
+        
         for i in 0...history.count-2 {
-            print(history[i]["value"].doubleValue)
             let value = ChartDataEntry(x: Double(i), y: Double(history[i]["value"].doubleValue))
             let date = history[i]["date"].stringValue
             dataPoints.append(value)
             dateEntry.append(date)
         }
+        
         let gradientColors = [UIColor(red:0.51, green:0.65, blue:0.73, alpha:1.0).cgColor, UIColor.clear.cgColor] as CFArray
         let colorLocations:[CGFloat] = [1.0, 0.0]
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
