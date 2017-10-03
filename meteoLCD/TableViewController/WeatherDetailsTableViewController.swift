@@ -49,10 +49,12 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
     }
     
     func parseCurrent() {
-        self.downloader = DownloadHelper(url: url, file: FILE_NAME)
-        self.weather = self.downloader.download()
-        self.weather = self.downloader.parse()
-        self.weather = self.downloader.parse()
+        DispatchQueue.global(qos: .background).async {
+            self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
+            DispatchQueue.main.async(flags: .barrier) {
+                self.weather = self.downloader.download()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
