@@ -36,7 +36,7 @@ class GalleryViewController:  UIViewController {
         
         self.navigationItem.title = "meteoLCD Gallery"
         for i in 2...45 {
-            photos.append(INSPhoto(image: UIImage(named: String(format: "%03d", i)), thumbnailImage: UIImage(named: String(format: "%03d", i))))
+            self.photos.append(INSPhoto(image: UIImage(named: String(format: "%03d", i)), thumbnailImage: UIImage(named: String(format: "%03d", i))))
         }
     }
 }
