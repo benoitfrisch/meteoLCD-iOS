@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056393C61F84DDD80097282D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056393C51F84DDD80097282D /* AboutViewController.swift */; };
 		057C3F461F7FFC040082FA6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F451F7FFC040082FA6B /* AppDelegate.swift */; };
 		057C3F4D1F7FFC040082FA6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057C3F4B1F7FFC040082FA6B /* Main.storyboard */; };
 		057C3F4F1F7FFC040082FA6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057C3F4E1F7FFC040082FA6B /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		056393C51F84DDD80097282D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		057C3F421F7FFC040082FA6B /* meteoLCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meteoLCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057C3F451F7FFC040082FA6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		057C3F4C1F7FFC040082FA6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				057C3F6C1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift */,
 				05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */,
+				056393C51F84DDD80097282D /* AboutViewController.swift */,
 			);
 			path = TableViewController;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				05F53D841F82E6B4004AB531 /* GraphsTableViewController.swift in Sources */,
 				05F53D921F83B402004AB531 /* ValueFormatter.swift in Sources */,
 				057C3F6D1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift in Sources */,
+				056393C61F84DDD80097282D /* AboutViewController.swift in Sources */,
 				05BEFF1C1F83D88800444436 /* GalleryViewController.swift in Sources */,
 				F4A8E124475C28CA237DA69D /* README.md in Sources */,
 				05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */,
