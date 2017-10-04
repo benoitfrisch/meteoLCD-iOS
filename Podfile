@@ -9,5 +9,5 @@ target 'meteoLCD' do
     pod 'Firebase/Core'
     pod 'SwiftyJSON'
     pod 'Charts'
-    pod 'SwiftPhotoGallery'
+    pod 'INSPhotoGallery'
 end
