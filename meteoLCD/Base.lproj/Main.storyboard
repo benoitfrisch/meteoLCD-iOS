@@ -322,7 +322,7 @@ ajourd'hui, 21h30</string>
         <scene sceneID="mbi-B7-3fj">
             <objects>
                 <navigationController id="2sj-ok-lLF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Details" image="info" id="oys-eV-UGl"/>
+                    <tabBarItem key="tabBarItem" title="Details" image="details" id="oys-eV-UGl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DG0-GK-BbT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -680,7 +680,10 @@ ajourd'hui, 21h30</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="App Development" footerTitle="© 2010-2017 meteoLCD" id="SvY-O6-OPs">
+                            <tableViewSection headerTitle="App Development" id="SvY-O6-OPs">
+                                <string key="footerTitle">© 2010-2017 meteoLCD
+
+Icons from icons8.com</string>
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="zn5-1w-eNh" detailTextLabel="qDf-7F-4sq" style="IBUITableViewCellStyleSubtitle" id="aVW-fU-X55">
                                         <rect key="frame" x="0.0" y="362.5" width="375" height="44"/>
@@ -780,6 +783,7 @@ ajourd'hui, 21h30</string>
     </scenes>
     <resources>
         <image name="chart_vector" width="25" height="25"/>
+        <image name="details" width="25" height="25"/>
         <image name="imageView:0xT-Vi-q2V:image" width="768" height="1024">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
