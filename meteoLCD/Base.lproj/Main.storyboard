@@ -380,17 +380,22 @@ ajourd'hui, 21h30</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="delegate" destination="IXw-7G-Vmr" id="Iud-V2-jmY"/>
+                                    <outlet property="delegate" destination="IXw-7G-Vmr" id="Fyb-9K-bfc"/>
                                 </connections>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fBI-5t-3z0">
+                                <rect key="frame" x="177" y="331" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BtX-Qk-q6C" firstAttribute="top" secondItem="4ep-NV-8Dt" secondAttribute="bottom" id="8jm-a2-fu2"/>
+                            <constraint firstItem="fBI-5t-3z0" firstAttribute="centerY" secondItem="BtX-Qk-q6C" secondAttribute="centerY" id="EQc-LJ-Z5E"/>
                             <constraint firstItem="BtX-Qk-q6C" firstAttribute="leading" secondItem="gfl-bF-0yg" secondAttribute="leading" id="Fdo-pH-fGm"/>
                             <constraint firstItem="BtX-Qk-q6C" firstAttribute="centerX" secondItem="gfl-bF-0yg" secondAttribute="centerX" id="RcL-hn-uH0"/>
                             <constraint firstItem="BtX-Qk-q6C" firstAttribute="centerY" secondItem="gfl-bF-0yg" secondAttribute="centerY" id="bCq-R0-MgJ"/>
                             <constraint firstItem="Fra-yk-Kyx" firstAttribute="top" secondItem="BtX-Qk-q6C" secondAttribute="bottom" id="mz6-X4-c1i"/>
+                            <constraint firstItem="fBI-5t-3z0" firstAttribute="centerX" secondItem="BtX-Qk-q6C" secondAttribute="centerX" id="pgD-HF-V7O"/>
                             <constraint firstItem="BtX-Qk-q6C" firstAttribute="trailing" secondItem="gfl-bF-0yg" secondAttribute="trailing" id="vOH-jT-4Gn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gfl-bF-0yg"/>
@@ -404,6 +409,7 @@ ajourd'hui, 21h30</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="spinner" destination="fBI-5t-3z0" id="E1w-Rm-bFL"/>
                         <outlet property="webView" destination="BtX-Qk-q6C" id="P24-pq-jio"/>
                     </connections>
                 </viewController>
