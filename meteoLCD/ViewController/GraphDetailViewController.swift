@@ -22,6 +22,7 @@ import SwiftyJSON
 import Alamofire
 import EFInternetIndicator
 import Charts
+import Firebase
 
 class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     private var graph: JSON! = nil
@@ -38,9 +39,13 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         self.startMonitoringInternet()
         self.navigationItem.title = label
         
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "GraphDetail_\(self.id)" as NSObject,
+            AnalyticsParameterItemName: "GraphDetail_\(self.id)" as NSObject,
+            AnalyticsParameterContentType: "graph" as NSObject
+            ])
+        
         self.updateGraph()
-        
-        
         super.viewDidLoad()
     }
     

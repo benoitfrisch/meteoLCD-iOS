@@ -19,6 +19,7 @@
 
 import UIKit
 import INSPhotoGallery
+import Firebase
 
 class GalleryViewController:  UIViewController {
 
@@ -33,6 +34,12 @@ class GalleryViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "Gallery" as NSObject,
+            AnalyticsParameterItemName: "Gallery" as NSObject,
+            AnalyticsParameterContentType: "gallery" as NSObject
+            ])
         
         self.navigationItem.title = "meteoLCD Gallery"
         for i in 2...45 {

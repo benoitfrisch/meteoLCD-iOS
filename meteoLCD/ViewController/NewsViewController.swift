@@ -18,6 +18,7 @@
  */
 import UIKit
 import EFInternetIndicator
+import Firebase
 
 class NewsViewController: UIViewController, UIWebViewDelegate, InternetStatusIndicable {
     var internetConnectionIndicator: InternetViewIndicator?
@@ -30,6 +31,11 @@ class NewsViewController: UIViewController, UIWebViewDelegate, InternetStatusInd
         self.navigationItem.title = "News"
         webView.loadRequest(NSURLRequest(url: NSURL(string: "https://lcd.fresh.lu/getnews.php")! as URL) as URLRequest)
         spinner.startAnimating()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "NewsLoad" as NSObject,
+            AnalyticsParameterItemName: "NewsLoad" as NSObject,
+            AnalyticsParameterContentType: "news" as NSObject
+            ])
         super.viewDidLoad()
     }
     

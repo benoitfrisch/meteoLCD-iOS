@@ -20,6 +20,7 @@
 import SwiftyJSON
 import Alamofire
 import EFInternetIndicator
+import Firebase
 
 class GraphsTableViewController: UITableViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
@@ -33,6 +34,11 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
         self.startMonitoringInternet()
         self.navigationItem.title = "Graphs (7 days)"
         self.parseCurrent()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "GraphOverview" as NSObject,
+            AnalyticsParameterItemName: "GraphOverview" as NSObject,
+            AnalyticsParameterContentType: "graph" as NSObject
+            ])
         self.tableView.rowHeight = 60.0
         refresher = UIRefreshControl()
         tableView.addSubview(refresher)

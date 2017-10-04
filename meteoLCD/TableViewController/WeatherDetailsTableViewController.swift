@@ -21,6 +21,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import EFInternetIndicator
+import Firebase
 
 class WeatherDetailsTableViewController: UITableViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
@@ -35,6 +36,11 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
         self.startMonitoringInternet()
         self.navigationItem.title = "Weather Details"
         self.parseCurrent()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "WeatherDetails" as NSObject,
+            AnalyticsParameterItemName: "WeatherDetails" as NSObject,
+            AnalyticsParameterContentType: "current-details" as NSObject
+            ])
         self.tableView.rowHeight = 60.0
         refresher = UIRefreshControl()
         tableView.addSubview(refresher)

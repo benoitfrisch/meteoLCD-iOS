@@ -19,12 +19,18 @@
 
 
 import UIKit
+import Firebase
 
 class AboutViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "About" as NSObject,
+            AnalyticsParameterItemName: "About" as NSObject,
+            AnalyticsParameterContentType: "about" as NSObject
+            ])
         // Do any additional setup after loading the view.
     }
     

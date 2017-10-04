@@ -21,6 +21,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import EFInternetIndicator
+import Firebase
 
 class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
@@ -41,11 +42,21 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
         self.startMonitoringInternet()
         self.navigationItem.title = "Current Weather"
         self.displayCurrentWeather()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "CurrentWeatherLoad" as NSObject,
+            AnalyticsParameterItemName: "CurrentWeatherLoad" as NSObject,
+            AnalyticsParameterContentType: "current" as NSObject
+            ])
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.displayCurrentWeather()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "CurrentWeatherAppear" as NSObject,
+            AnalyticsParameterItemName: "CurrentWeatherAppear" as NSObject,
+            AnalyticsParameterContentType: "current" as NSObject
+            ])
     }
     
     @IBAction func refresh(_ sender: Any) {
@@ -57,6 +68,12 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
         self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
         self.downloader.download()
         self.weather = self.downloader.parse()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "CurrentWeatherParse" as NSObject,
+            AnalyticsParameterItemName: "CurrentWeatherParse" as NSObject,
+            AnalyticsParameterContentType: "current" as NSObject
+            ])
     }
     
     func displayCurrentWeather() {
