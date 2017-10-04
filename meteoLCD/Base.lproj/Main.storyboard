@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -230,16 +231,24 @@ ajourd'hui, 21h30</string>
                         <viewLayoutGuide key="safeArea" id="86F-TH-gBn"/>
                     </view>
                     <navigationItem key="navigationItem" id="uPf-8l-X1j">
+                        <barButtonItem key="backBarButtonItem" title="Current" id="7HX-Ho-X7t"/>
                         <barButtonItem key="leftBarButtonItem" image="info" style="plain" id="h8c-r8-B3r">
                             <connections>
                                 <segue destination="VXW-qb-oMG" kind="show" id="VOv-Fa-Nm6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="pEZ-mB-bXg">
-                            <connections>
-                                <action selector="refresh:" destination="VgY-mx-9Gj" id="HWS-7O-QD9"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="refresh" id="pEZ-mB-bXg">
+                                <connections>
+                                    <action selector="refresh:" destination="VgY-mx-9Gj" id="HWS-7O-QD9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Lightning" image="lightning" id="YaL-aq-3HS">
+                                <connections>
+                                    <segue destination="vgO-QB-QjT" kind="show" id="M0U-bB-Waw"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImage" destination="0xT-Vi-q2V" id="G21-9D-GjA"/>
@@ -714,6 +723,59 @@ ajourd'hui, 21h30</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmR-Wu-HPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861.5999999999999" y="-1229.2353823088456"/>
+        </scene>
+        <!--Lightning View Controller-->
+        <scene sceneID="8xZ-9f-M1a">
+            <objects>
+                <viewController id="vgO-QB-QjT" customClass="LightningViewController" customModule="meteoLCD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IAv-8O-cOj"/>
+                        <viewControllerLayoutGuide type="bottom" id="m6v-Oo-b6n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xqi-g6-BUK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmM-6m-vJS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vgO-QB-QjT" id="PNx-Pr-hHs"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-RQ-gHu">
+                                <rect key="frame" x="177" y="331" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qfa-RQ-gHu" firstAttribute="centerX" secondItem="pmM-6m-vJS" secondAttribute="centerX" id="1X1-dA-Vrd"/>
+                            <constraint firstItem="m6v-Oo-b6n" firstAttribute="top" secondItem="pmM-6m-vJS" secondAttribute="bottom" id="4yp-QR-LQo"/>
+                            <constraint firstItem="pmM-6m-vJS" firstAttribute="centerX" secondItem="gU7-Ga-agX" secondAttribute="centerX" id="KIM-W3-hMZ"/>
+                            <constraint firstItem="pmM-6m-vJS" firstAttribute="trailing" secondItem="gU7-Ga-agX" secondAttribute="trailing" id="VCP-gu-hig"/>
+                            <constraint firstItem="pmM-6m-vJS" firstAttribute="leading" secondItem="gU7-Ga-agX" secondAttribute="leading" id="e6y-TT-sW6"/>
+                            <constraint firstItem="pmM-6m-vJS" firstAttribute="centerY" secondItem="gU7-Ga-agX" secondAttribute="centerY" id="ftC-ez-XT0"/>
+                            <constraint firstItem="pmM-6m-vJS" firstAttribute="top" secondItem="IAv-8O-cOj" secondAttribute="bottom" id="mjP-Yx-gDK"/>
+                            <constraint firstItem="qfa-RQ-gHu" firstAttribute="centerY" secondItem="pmM-6m-vJS" secondAttribute="centerY" id="pjz-2F-Ze4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gU7-Ga-agX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2md-P9-9Vr">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="GFy-1S-gbs"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="bAu-Nc-D15">
+                            <connections>
+                                <action selector="reload" destination="pmM-6m-vJS" id="7rv-Jj-1IC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="spinner" destination="qfa-RQ-gHu" id="ZBh-vg-3S3"/>
+                        <outlet property="webView" destination="pmM-6m-vJS" id="aYu-QI-KxU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xZO-08-Q88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2807" y="-475"/>
         </scene>
     </scenes>
     <resources>
@@ -41102,6 +41164,7 @@ SOVQ5VXlV+VZ5V7lZuVp5W7lduV55YvljuWTAAAAAAAAAgEAAAAAAAAAVwAAAAAAAAAAAAAAAAAA5ZU
 </mutableData>
         </image>
         <image name="info" width="25" height="25"/>
+        <image name="lightning" width="25" height="25"/>
         <image name="news" width="25" height="25"/>
         <image name="photos" width="25" height="25"/>
         <image name="thermometer" width="25" height="25"/>

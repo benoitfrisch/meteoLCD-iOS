@@ -22,6 +22,7 @@
 		057C3F6F1F8131140082FA6B /* CurrentWeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F6E1F8131140082FA6B /* CurrentWeatherClass.swift */; };
 		05BEFF1C1F83D88800444436 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEFF1B1F83D88800444436 /* GalleryViewController.swift */; };
 		05BEFF1E1F83DC4900444436 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEFF1D1F83DC4900444436 /* MainCollectionViewCell.swift */; };
+		05C2C3391F85605700E5E439 /* LightningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2C3381F85605700E5E439 /* LightningViewController.swift */; };
 		05F53D841F82E6B4004AB531 /* GraphsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */; };
 		05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D851F82E76A004AB531 /* DownloadHelper.swift */; };
 		05F53D8F1F82EEF7004AB531 /* GraphDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */; };
@@ -64,6 +65,7 @@
 		0590A8ED1F81A9E500A366BF /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BEFF1B1F83D88800444436 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		05BEFF1D1F83DC4900444436 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		05C2C3381F85605700E5E439 /* LightningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningViewController.swift; sourceTree = "<group>"; };
 		05F53D831F82E6B4004AB531 /* GraphsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphsTableViewController.swift; sourceTree = "<group>"; };
 		05F53D851F82E76A004AB531 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				05F53D8E1F82EEF7004AB531 /* GraphDetailViewController.swift */,
 				05F53D931F83D71E004AB531 /* NewsViewController.swift */,
 				05BEFF1B1F83D88800444436 /* GalleryViewController.swift */,
+				05C2C3381F85605700E5E439 /* LightningViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				05F53D921F83B402004AB531 /* ValueFormatter.swift in Sources */,
 				057C3F6D1F80FAD50082FA6B /* WeatherDetailsTableViewController.swift in Sources */,
 				056393C61F84DDD80097282D /* AboutViewController.swift in Sources */,
+				05C2C3391F85605700E5E439 /* LightningViewController.swift in Sources */,
 				05BEFF1C1F83D88800444436 /* GalleryViewController.swift in Sources */,
 				F4A8E124475C28CA237DA69D /* README.md in Sources */,
 				051FCF391F84E5D800F4F45D /* Bundle.swift in Sources */,
