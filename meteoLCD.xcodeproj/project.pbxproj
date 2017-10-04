@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		051FCF371F84E38C00F4F45D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 056393C91F84E24F0097282D /* GoogleService-Info.plist */; };
+		051FCF391F84E5D800F4F45D /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051FCF381F84E5D800F4F45D /* Bundle.swift */; };
 		056393C61F84DDD80097282D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056393C51F84DDD80097282D /* AboutViewController.swift */; };
 		056393C81F84E1850097282D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 056393C71F84E1850097282D /* Settings.bundle */; };
 		057C3F461F7FFC040082FA6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C3F451F7FFC040082FA6B /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051FCF381F84E5D800F4F45D /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		056393C51F84DDD80097282D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		056393C71F84E1850097282D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		056393C91F84E24F0097282D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				05F53D851F82E76A004AB531 /* DownloadHelper.swift */,
+				051FCF381F84E5D800F4F45D /* Bundle.swift */,
 				05F53D911F83B402004AB531 /* ValueFormatter.swift */,
 			);
 			path = Helper;
@@ -379,6 +382,7 @@
 				056393C61F84DDD80097282D /* AboutViewController.swift in Sources */,
 				05BEFF1C1F83D88800444436 /* GalleryViewController.swift in Sources */,
 				F4A8E124475C28CA237DA69D /* README.md in Sources */,
+				051FCF391F84E5D800F4F45D /* Bundle.swift in Sources */,
 				05F53D861F82E76A004AB531 /* DownloadHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

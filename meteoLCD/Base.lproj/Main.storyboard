@@ -619,6 +619,9 @@ ajourd'hui, 21h30</string>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="tJq-in-hhE"/>
                     <navigationItem key="navigationItem" title="About" id="Mbo-9t-4BV"/>
+                    <connections>
+                        <outlet property="versionLabel" destination="abd-Xd-rHq" id="kgd-15-2Zu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmR-Wu-HPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

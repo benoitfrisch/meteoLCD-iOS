@@ -18,17 +18,12 @@
  */
 
 import UIKit
-import Charts
 
-class ValueFormatter: NSObject, IAxisValueFormatter {
-    var unit : String!
-    
-    convenience init(unit: String) {
-        self.init()
-        self.unit = unit
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
     }
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return String(value)+" "+unit
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
     }
 }

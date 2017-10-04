@@ -22,10 +22,13 @@ import UIKit
 import Firebase
 
 class AboutViewController: UITableViewController {
-
+    @IBOutlet var versionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        versionLabel.text = "Version \(Bundle.main.releaseVersionNumber!) (\(Bundle.main.buildVersionNumber!))"
+        
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "About" as NSObject,
             AnalyticsParameterItemName: "About" as NSObject,
