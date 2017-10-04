@@ -1,0 +1,50 @@
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014-2…
+
+name: AlamofireImage, nameSpecified: 
+body: Copyright (c) 2015-2…
+
+name: AlamofireNetworkActivityIndicator, nameSpecified: 
+body: Copyright (c) 2016 A…
+
+name: Charts, nameSpecified: 
+body: Apache License
+     …
+
+name: EFInternetIndicator, nameSpecified: 
+body: Copyright (c) 2017 e…
+
+name: Firebase, nameSpecified: 
+body: Copyright 2017 Googl…
+
+name: FirebaseAnalytics, nameSpecified: 
+body: Copyright 2017 Googl…
+
+name: FirebaseCore, nameSpecified: 
+body: Copyright 2017 Googl…
+
+name: FirebaseInstanceID, nameSpecified: 
+body: Copyright 2017 Googl…
+
+name: GoogleToolboxForMac, nameSpecified: 
+body: 
+                   …
+
+name: INSPhotoGallery, nameSpecified: 
+body:                     …
+
+name: ReachabilitySwift, nameSpecified: 
+body: Copyright (c) 2016 A…
+
+name: SwiftMessages, nameSpecified: 
+body: Copyright (c) 2016 S…
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+
+name: nanopb, nameSpecified: 
+body: Copyright (c) 2011 P…
+
+add-version-numbers: false
+
+LicensePlist Version: 1.4.5
