@@ -55,6 +55,10 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         self.graph = self.downloader.parse()
     }
 
+    @IBAction func refresh(_ sender: Any) {
+        self.updateGraph()
+    }
+    
     func updateGraph() {
         var dataPoints  = [ChartDataEntry]()
         var dateEntry  = [String]()

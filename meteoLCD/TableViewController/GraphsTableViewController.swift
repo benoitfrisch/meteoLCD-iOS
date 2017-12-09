@@ -48,8 +48,10 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.parseCurrent()
-        self.tableView.reloadData()
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.parseCurrent()
+            self.tableView.reloadData()
+        })
     }
     
     @IBAction func refresh(_ sender: Any) {
@@ -57,16 +59,17 @@ class GraphsTableViewController: UITableViewController, InternetStatusIndicable 
     }
     
     @objc func pullRefresh() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async(execute: { () -> Void in
             self.parseCurrent()
             self.refresher.endRefreshing()
-        }
+        })
     }
     
     func parseCurrent() {
         self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
         self.downloader.download()
         self.weather = self.downloader.parse()
+        
         self.tableView.reloadData()
     }
     

@@ -20,6 +20,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import AlamofireImage
 import EFInternetIndicator
 import Firebase
 
@@ -65,9 +66,11 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     }
     
     func parseCurrent() {
-        self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-        self.downloader.download()
-        self.weather = self.downloader.parse()
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
+            self.downloader.download()
+            self.weather = self.downloader.parse()
+        })
         
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "CurrentWeatherParse" as NSObject,
@@ -77,30 +80,28 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     }
     
     func displayCurrentWeather() {
-        while (weather==nil) {
-            self.parseCurrent()
-            if (self.weather["weather"].arrayValue.count>0) {
-                break
-            }
-        }
-        
-        while (self.weather["weather"].arrayValue.count==0) {
-            self.parseCurrent()
-            if (self.weather["weather"].arrayValue.count>0) {
-                break
-            }
-        }
-        
         self.parseCurrent()
         
-        self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+            self.loadCurrentImage()
+            self.currentWeatherImage.image = UIImage(named: self.currentWeather.icon!)
+            self.currentTemperatureLabel.text = self.currentWeather.temperature
+            self.currentPressionLabel.text = self.currentWeather.pression
+            self.currentWeatherBoxLabel.backgroundColor = self.currentWeather.backgroundColor
+            self.lastUpdatedLabel.text = "Dernière mise à jour:\n"+self.currentWeather.timestamp!
+        })
+    }
+    
+    func loadCurrentImage() {
+        Alamofire.request("http://www.lcd.lu/meteo/current.jpg").responseImage { response in
+            if let image = response.result.value {
+                self.backgroundImage.image = image
+            } else {
+                self.backgroundImage.image = UIImage(named: self.currentWeather.icon!+"_back")
+            }
+        }
         
-        backgroundImage.image = UIImage(named: currentWeather.icon!+"_back")
-        currentWeatherImage.image = UIImage(named: currentWeather.icon!)
-        currentTemperatureLabel.text = currentWeather.temperature
-        currentPressionLabel.text = currentWeather.pression
-        currentWeatherBoxLabel.backgroundColor = currentWeather.backgroundColor
-        lastUpdatedLabel.text = "Dernière mise à jour:\n"+currentWeather.timestamp!
     }
 
     override func didReceiveMemoryWarning() {
