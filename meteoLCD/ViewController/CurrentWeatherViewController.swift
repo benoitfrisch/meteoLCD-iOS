@@ -62,35 +62,30 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     
     @IBAction func refresh(_ sender: Any) {
         self.displayCurrentWeather()
-        
-    }
-    
-    func parseCurrent() {
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-            self.downloader.download()
-            self.weather = self.downloader.parse()
-        })
-        
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "CurrentWeatherParse" as NSObject,
-            AnalyticsParameterItemName: "CurrentWeatherParse" as NSObject,
-            AnalyticsParameterContentType: "current" as NSObject
-            ])
     }
     
     func displayCurrentWeather() {
-        self.parseCurrent()
-        
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-            self.loadCurrentImage()
-            self.currentWeatherImage.image = UIImage(named: self.currentWeather.icon!)
-            self.currentTemperatureLabel.text = self.currentWeather.temperature
-            self.currentPressionLabel.text = self.currentWeather.pression
-            self.currentWeatherBoxLabel.backgroundColor = self.currentWeather.backgroundColor
-            self.lastUpdatedLabel.text = "Dernière mise à jour:\n"+self.currentWeather.timestamp!
-        })
+        Alamofire.request(self.url).responseJSON { response in
+            /*print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")*/
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)") // original server data as UTF8 string
+                if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
+                    self.weather = JSON(data: dataFromString)
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+                    self.loadCurrentImage()
+                    self.currentWeatherImage.image = UIImage(named: self.currentWeather.icon!)
+                    self.currentTemperatureLabel.text = self.currentWeather.temperature
+                    self.currentPressionLabel.text = self.currentWeather.pression
+                    self.currentWeatherBoxLabel.backgroundColor = self.currentWeather.backgroundColor
+                    self.lastUpdatedLabel.text = "Dernière mise à jour:\n"+self.currentWeather.timestamp!
+                })
+            }
+        }
     }
     
     func loadCurrentImage() {
