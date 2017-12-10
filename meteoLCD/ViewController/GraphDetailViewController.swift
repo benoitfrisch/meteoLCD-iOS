@@ -60,6 +60,7 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     }
     
     func updateGraph() {
+        self.graphView.clear()
         var dataPoints  = [ChartDataEntry]()
         var dateEntry  = [String]()
         
@@ -111,6 +112,7 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         graphView.xAxis.labelRotationAngle = CGFloat(270.0)
         graphView.xAxis.labelPosition = XAxis.LabelPosition.bottom;
         graphView.legend.enabled = false
+        self.graphView.reloadInputViews()
     }
     
     override func didReceiveMemoryWarning() {
