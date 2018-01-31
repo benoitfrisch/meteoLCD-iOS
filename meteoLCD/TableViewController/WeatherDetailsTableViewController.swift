@@ -22,6 +22,7 @@ import SwiftyJSON
 import Alamofire
 import EFInternetIndicator
 import Firebase
+import PKHUD
 
 class WeatherDetailsTableViewController: UITableViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
@@ -50,7 +51,6 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
     
     override func viewDidAppear(_ animated: Bool) {
         self.parseCurrent()
-        self.tableView.reloadData()
     }
     
     @IBAction func refresh(_ sender: Any) {
@@ -65,21 +65,35 @@ class WeatherDetailsTableViewController: UITableViewController, InternetStatusIn
     }
     
     func parseCurrent() {
-        self.downloader = DownloadHelper(url: self.url, file: self.FILE_NAME)
-        self.downloader.download()
-        self.weather = self.downloader.parse()
-        self.tableView.reloadData()
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        
+        Alamofire.request(self.url).responseJSON { response in
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
+                    do {
+                        try self.weather = JSON(data: dataFromString)
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                                self.tableView.reloadData()
+                            }
+                        })
+                    } catch {
+                    }
+                }
+            }
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return weather["weather"].arrayValue.count
+        return self.weather != nil ? self.weather["weather"].arrayValue.count : 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
