@@ -10,4 +10,5 @@ target 'meteoLCD' do
     pod 'SwiftyJSON'
     pod 'Charts'
     pod 'INSPhotoGallery'
+    pod 'PKHUD', '~> 5.0'
 end

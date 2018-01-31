@@ -35,6 +35,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PKHUD (5.0.0)
   - ReachabilitySwift (3)
   - SwiftMessages (4.0.0)
   - SwiftyJSON (3.1.4)
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - EFInternetIndicator
   - Firebase/Core
   - INSPhotoGallery
+  - PKHUD (~> 5.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -62,10 +64,11 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   INSPhotoGallery: 2c07e4a5b5be1b4fd49c0c1f16eed28c6fe8a15d
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 0e28f5b268a3afa47c57893cc00729f735a61c32
+PODFILE CHECKSUM: a19c4fec049bbc24fdf6309c44f6af91ce7dbedc
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
