@@ -23,6 +23,7 @@ import Alamofire
 import AlamofireImage
 import EFInternetIndicator
 import Firebase
+import PKHUD
 
 class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
@@ -65,25 +66,26 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     }
     
     func displayCurrentWeather() {
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        
         Alamofire.request(self.url).responseJSON { response in
-            /*print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")*/
-            
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
+                //print("Data: \(utf8Text)") // original server data as UTF8 string
                 if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
                     self.weather = JSON(data: dataFromString)
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                                self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
+                                self.loadCurrentImage()
+                                self.currentWeatherImage.image = UIImage(named: self.currentWeather.icon!)
+                                self.currentTemperatureLabel.text = self.currentWeather.temperature
+                                self.currentPressionLabel.text = self.currentWeather.pression
+                                self.currentWeatherBoxLabel.backgroundColor = self.currentWeather.backgroundColor
+                                self.lastUpdatedLabel.text = "Dernière mise à jour:\n"+self.currentWeather.timestamp!
+                            }
+                    })
                 }
-                DispatchQueue.main.async(execute: { () -> Void in
-                    self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)
-                    self.loadCurrentImage()
-                    self.currentWeatherImage.image = UIImage(named: self.currentWeather.icon!)
-                    self.currentTemperatureLabel.text = self.currentWeather.temperature
-                    self.currentPressionLabel.text = self.currentWeather.pression
-                    self.currentWeatherBoxLabel.backgroundColor = self.currentWeather.backgroundColor
-                    self.lastUpdatedLabel.text = "Dernière mise à jour:\n"+self.currentWeather.timestamp!
-                })
             }
         }
     }
