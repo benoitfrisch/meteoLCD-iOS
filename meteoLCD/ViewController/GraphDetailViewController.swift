@@ -70,12 +70,9 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 //print("Data: \(utf8Text)") // original server data as UTF8 string
                 if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
-                    do {
-                        try self.graph = JSON(data: dataFromString)
+                        self.graph = JSON(data: dataFromString)
                         DispatchQueue.main.async(execute: { () -> Void in
                             PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
-                                var backgroundColor : UIColor! = UIColor.white
-                                var textColor : UIColor! = nil
                                 if (self.graph["history"].arrayValue.count > 0) {
                                     let history = self.graph["history"].arrayValue
                                     
@@ -111,14 +108,13 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
                                     self.graphView.xAxis.labelRotationAngle = CGFloat(270.0)
                                     self.graphView.xAxis.labelPosition = XAxis.LabelPosition.bottom;
                                     self.graphView.legend.enabled = false
+                                    self.graphView.highlightPerTapEnabled = false
+                                    self.graphView.highlightPerDragEnabled = false
                                     self.graphView.reloadInputViews()
                                 }
                             }
                         })
-                    } catch {
                     }
-                }
-                
             }
         }
     }
