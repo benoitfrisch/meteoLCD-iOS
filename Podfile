@@ -5,10 +5,10 @@ target 'meteoLCD' do
     pod 'Alamofire'
     pod 'AlamofireImage', '~> 3.2'
     pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
+    pod 'PKHUD', '~> 5.0'
     pod 'EFInternetIndicator'
     pod 'Firebase/Core'
     pod 'SwiftyJSON'
     pod 'Charts'
     pod 'INSPhotoGallery'
-    pod 'PKHUD', '~> 5.0'
 end

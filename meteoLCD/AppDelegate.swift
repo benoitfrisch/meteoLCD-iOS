@@ -19,6 +19,7 @@
 
 import UIKit
 import Firebase
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -18,10 +18,11 @@
  */
 
 import UIKit
-import SwiftyJSON
 import Alamofire
-import EFInternetIndicator
 import Charts
+import PKHUD
+import EFInternetIndicator
+import SwiftyJSON
 import Firebase
 
 class GraphDetailViewController: UIViewController, InternetStatusIndicable {
@@ -32,11 +33,11 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     public var unit: String! = nil
     private var downloader : DownloadHelper! = nil
     var internetConnectionIndicator: InternetViewIndicator?
-    
     @IBOutlet var graphView: LineChartView!
     
     override func viewDidLoad() {
         self.startMonitoringInternet()
+        self.navigationItem.title = label
         self.navigationItem.title = label
         
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
@@ -49,70 +50,77 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         super.viewDidLoad()
     }
     
-    func parseCurrent() {
-        self.downloader = DownloadHelper(url: self.url+self.id, file: "graph_" + self.id + ".json")
-        self.downloader.download()
-        self.graph = self.downloader.parse()
-    }
-
     @IBAction func refresh(_ sender: Any) {
+         self.updateGraph()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.updateGraph()
     }
     
     func updateGraph() {
         self.graphView.clear()
-        var dataPoints  = [ChartDataEntry]()
-        var dateEntry  = [String]()
+        var dataPoints = [ChartDataEntry]()
+        var dateEntry = [String]()
         
-        while (graph==nil) {
-            self.parseCurrent()
-            if (graph["history"].arrayValue.count>0) {
-                break
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        
+        Alamofire.request(self.url + self.id).responseJSON { response in
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                //print("Data: \(utf8Text)") // original server data as UTF8 string
+                if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
+                    do {
+                        try self.graph = JSON(data: dataFromString)
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                                var backgroundColor : UIColor! = UIColor.white
+                                var textColor : UIColor! = nil
+                                if (self.graph["history"].arrayValue.count > 0) {
+                                    let history = self.graph["history"].arrayValue
+                                    
+                                    for i in 0...history.count-2 {
+                                        let value = ChartDataEntry(x: Double(i), y: Double(history[i]["value"].doubleValue))
+                                        let date = history[i]["date"].stringValue
+                                        self.unit = history[i]["unit"].stringValue
+                                        dataPoints.append(value)
+                                        dateEntry.append(date)
+                                    }
+                                    
+                                    let gradientColors = [UIColor(red:0.51, green:0.65, blue:0.73, alpha:1.0).cgColor, UIColor.clear.cgColor] as CFArray
+                                    let colorLocations:[CGFloat] = [1.0, 0.0]
+                                    let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
+                                    
+                                    
+                                    let historyLine = LineChartDataSet(values: dataPoints, label: self.label)
+                                    historyLine.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
+                                    historyLine.drawFilledEnabled = true
+                                    historyLine.drawCirclesEnabled = false
+                                    historyLine.highlightColor = UIColor.orange
+                                    historyLine.colors = [UIColor(red:0.51, green:0.65, blue:0.73, alpha:1.0)]
+                                    
+                                    let data = LineChartData()
+                                    data.addDataSet(historyLine)
+                                    
+                                    let valueFormat = ValueFormatter(unit: self.unit)
+                                    self.graphView.data = data
+                                    self.graphView.chartDescription?.text = ""
+                                    self.graphView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dateEntry)
+                                    self.graphView.leftAxis.valueFormatter = valueFormat
+                                    self.graphView.rightAxis.enabled = false
+                                    self.graphView.xAxis.labelRotationAngle = CGFloat(270.0)
+                                    self.graphView.xAxis.labelPosition = XAxis.LabelPosition.bottom;
+                                    self.graphView.legend.enabled = false
+                                    self.graphView.reloadInputViews()
+                                }
+                            }
+                        })
+                    } catch {
+                    }
+                }
+                
             }
         }
-        while (graph["history"].arrayValue.count==0) {
-            self.parseCurrent()
-            if (graph["history"].arrayValue.count>0) {
-                break
-            }
-        }
-        
-        let history = graph["history"].arrayValue
-
-        for i in 0...history.count-2 {
-            let value = ChartDataEntry(x: Double(i), y: Double(history[i]["value"].doubleValue))
-            let date = history[i]["date"].stringValue
-            self.unit = history[i]["unit"].stringValue
-            dataPoints.append(value)
-            dateEntry.append(date)
-        }
-        
-        let gradientColors = [UIColor(red:0.51, green:0.65, blue:0.73, alpha:1.0).cgColor, UIColor.clear.cgColor] as CFArray
-        let colorLocations:[CGFloat] = [1.0, 0.0]
-        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
-        
-        
-        let historyLine = LineChartDataSet(values: dataPoints, label: label)
-        historyLine.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
-        historyLine.drawFilledEnabled = true
-        historyLine.drawCirclesEnabled = false
-        historyLine.highlightColor = UIColor.orange
-        historyLine.colors = [UIColor(red:0.51, green:0.65, blue:0.73, alpha:1.0)]
-        
-        let data = LineChartData()
-        data.addDataSet(historyLine)
-        
-        let valueFormat = ValueFormatter(unit: self.unit)
-        
-        graphView.data = data
-        graphView.chartDescription?.text = ""
-        graphView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dateEntry)
-        graphView.leftAxis.valueFormatter = valueFormat
-        graphView.rightAxis.enabled = false
-        graphView.xAxis.labelRotationAngle = CGFloat(270.0)
-        graphView.xAxis.labelPosition = XAxis.LabelPosition.bottom;
-        graphView.legend.enabled = false
-        self.graphView.reloadInputViews()
     }
     
     override func didReceiveMemoryWarning() {
