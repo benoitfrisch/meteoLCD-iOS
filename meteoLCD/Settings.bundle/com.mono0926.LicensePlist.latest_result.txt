@@ -33,6 +33,9 @@ body:
 name: INSPhotoGallery, nameSpecified: 
 body:                     …
 
+name: PKHUD, nameSpecified: 
+body: The MIT License (MIT…
+
 name: ReachabilitySwift, nameSpecified: 
 body: Copyright (c) 2016 A…
 
