@@ -41,8 +41,8 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
         self.navigationItem.title = label
         
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-            AnalyticsParameterItemID: "GraphDetail_\(self.id)" as NSObject,
-            AnalyticsParameterItemName: "GraphDetail_\(self.id)" as NSObject,
+            AnalyticsParameterItemID: "GraphDetail_\(self.id!)" as NSObject,
+            AnalyticsParameterItemName: "GraphDetail_\(self.id!)" as NSObject,
             AnalyticsParameterContentType: "graph" as NSObject
             ])
         
@@ -70,7 +70,9 @@ class GraphDetailViewController: UIViewController, InternetStatusIndicable {
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 //print("Data: \(utf8Text)") // original server data as UTF8 string
                 if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
-                        self.graph = JSON(data: dataFromString)
+                    do {
+                        self.graph = try JSON(data: dataFromString)
+                    } catch { }
                         DispatchQueue.main.async(execute: { () -> Void in
                             PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
                                 if (self.graph["history"].arrayValue.count > 0) {

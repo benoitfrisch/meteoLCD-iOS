@@ -73,7 +73,9 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 //print("Data: \(utf8Text)") // original server data as UTF8 string
                 if let dataFromString = utf8Text.data(using: .utf8, allowLossyConversion: false) {
-                    self.weather = JSON(data: dataFromString)
+                    do {
+                        self.weather = try JSON(data: dataFromString)
+                    } catch{}
                         DispatchQueue.main.async(execute: { () -> Void in
                             PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
                                 self.currentWeather = CurrentWeatherClass(temperature: self.weather["temperature"].stringValue, pression: self.weather["pression"].stringValue, icon: self.weather["icon"].stringValue, timestamp: self.weather["lastupdate"].stringValue)

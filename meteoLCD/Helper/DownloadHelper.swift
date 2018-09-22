@@ -48,7 +48,9 @@ class DownloadHelper: NSObject {
             do {
                 let weatherString = try String(contentsOf: path, encoding: String.Encoding.utf8)
                 if let dataFromString = weatherString.data(using: .utf8, allowLossyConversion: false) {
-                    return JSON(data: dataFromString)
+                    do {
+                        return try JSON(data: dataFromString)
+                    } catch{}
                 }
             } catch {
             }
