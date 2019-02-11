@@ -27,7 +27,7 @@ import PKHUD
 
 class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
-    private var url: String = "http://www.lcd.lu/meteo/current_json.php"
+    private var url: String = "https://www.lcd.lu/meteo/current_json.php"
     private let FILE_NAME = "current.json"
     private var downloader : DownloadHelper! = nil
     private var currentWeather: CurrentWeatherClass!
@@ -93,7 +93,7 @@ class CurrentWeatherViewController: UIViewController, InternetStatusIndicable {
     }
     
     func loadCurrentImage() {
-        Alamofire.request("http://www.lcd.lu/meteo/current.jpg").responseImage { response in
+        Alamofire.request("https://meteo.lcd.lu/current.jpg").responseImage { response in
             if let image = response.result.value {
                 self.backgroundImage.image = image
             } else {

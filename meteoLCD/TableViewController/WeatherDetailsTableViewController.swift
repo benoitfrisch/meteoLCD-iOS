@@ -26,7 +26,7 @@ import PKHUD
 
 class WeatherDetailsTableViewController: UITableViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
-    private var url: String = "http://www.lcd.lu/meteo/current_json.php"
+    private var url: String = "https://www.lcd.lu/meteo/current_json.php"
     private let FILE_NAME = "current.json"
     private var downloader : DownloadHelper! = nil
     private var currentWeather: CurrentWeatherClass!

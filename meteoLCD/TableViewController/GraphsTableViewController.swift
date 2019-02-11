@@ -24,7 +24,7 @@ import Firebase
 
 class GraphsTableViewController: UITableViewController, InternetStatusIndicable {
     private var weather: JSON! = nil
-    private var url: String = "http://www.lcd.lu/meteo/graph_json.php"
+    private var url: String = "https://www.lcd.lu/meteo/graph_json.php"
     private let FILE_NAME = "graphs.json"
     private var downloader : DownloadHelper! = nil
     var internetConnectionIndicator: InternetViewIndicator?

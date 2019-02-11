@@ -27,7 +27,7 @@ import Firebase
 
 class GraphDetailViewController: UIViewController, InternetStatusIndicable {
     private var graph: JSON! = nil
-    private var url: String = "http://www.lcd.lu/meteo/graph_json.php?id="
+    private var url: String = "https://www.lcd.lu/meteo/graph_json.php?id="
     public var id: String! = nil
     public var label: String! = nil
     public var unit: String! = nil

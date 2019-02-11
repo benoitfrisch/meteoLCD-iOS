@@ -30,7 +30,7 @@ class WebcamViewController:  UIViewController, UIWebViewDelegate, InternetStatus
     override func viewDidLoad() {
         self.startMonitoringInternet()
         self.navigationItem.title = "Webcam"
-        webView.loadRequest(NSURLRequest(url: NSURL(string: "http://www.lcd.lu/meteo/current.jpg")! as URL) as URLRequest)
+        webView.loadRequest(NSURLRequest(url: NSURL(string: "https://meteo.lcd.lu/current.jpg")! as URL) as URLRequest)
         spinner.startAnimating()
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "Webcam" as NSObject,
